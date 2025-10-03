@@ -1,0 +1,243 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+    .modal.hidden {
+        display: none;
+    }
+
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+}
+
+    .modal-header h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+.license-text {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    margin: 0 20px;
+    border-radius: 8px;
+    max-height: 400px;
+}
+
+    .license-text h3 {
+        color: #2c3e50;
+        margin: 20px 0 10px 0;
+        font-size: 18px;
+    }
+
+    .license-text p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+
+    .license-text ul {
+        margin: 10px 0 15px 20px;
+    }
+
+    .license-text li {
+        margin-bottom: 8px;
+    }
+
+.modal-footer {
+    padding: 25px 30px;
+    background: white;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+    .checkbox-container input {
+        display: none;
+    }
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container input:checked + .checkmark {
+    background: #3498db;
+    border-color: #3498db;
+}
+
+    .checkbox-container input:checked + .checkmark::after {
+        content: '✓';
+        position: absolute;
+        color: white;
+        font-size: 14px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+.accept-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+    .accept-btn:hover:not(:disabled) {
+        background: linear-gradient(135deg, #2980b9, #2573a7);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+
+    .accept-btn:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+/* Стили для окна регистрации */
+.register-content {
+    max-width: 400px;
+}
+
+.register-body {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #444;
+}
+
+    .google-btn:hover {
+        border-color: #4285F4;
+        box-shadow: 0 2px 10px rgba(66, 133, 244, 0.2);
+        transform: translateY(-1px);
+    }
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.register-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+    .register-footer p {
+        font-size: 12px;
+        color: #777;
+        line-height: 1.4;
+    }
+
+/* Стили для скроллбара */
+.license-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+.license-text::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.license-text::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+    .license-text::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
