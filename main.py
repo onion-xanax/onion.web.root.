@@ -690,19 +690,36 @@ def google_auth():
 
 @app.route('/auth/google/callback')
 def google_callback():
+    print("=" * 60)
+    print("🔵 GOOGLE CALLBACK STARTED")
+    print(f"🔵 Request URL: {request.url}")
+    print(f"🔵 Request args: {dict(request.args)}")
+    print(f"🔵 Session keys: {list(session.keys())}")
+    print("=" * 60)
+    
     if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
+        print("❌ Google OAuth not configured")
         return "Google OAuth не настроен", 500
         
-    if request.args.get('state') != session.get('oauth_state'):
+    state = request.args.get('state')
+    session_state = session.get('oauth_state')
+    print(f"🔵 State check: request={state}, session={session_state}")
+    
+    if state != session_state:
+        print("❌ State mismatch")
         return "Неверный state параметр", 400
     
     code = request.args.get('code')
     if not code:
+        print("❌ No code received")
         return "Authorization code не получен", 400
     
     try:
         # Всегда используем Render домен
         redirect_uri = "https://onion-web-root.onrender.com/auth/google/callback"
+        print(f"🔵 Using redirect_uri: {redirect_uri}")
+        print(f"🔵 Using Client ID: {GOOGLE_CLIENT_ID}")
+        print(f"🔵 Code length: {len(code)}")
         
         token_url = "https://oauth2.googleapis.com/token"
         token_data = {
@@ -713,32 +730,45 @@ def google_callback():
             "redirect_uri": redirect_uri
         }
         
+        print("🔵 Requesting token from Google...")
         token_response = requests.post(token_url, data=token_data)
+        print(f"🔵 Token response status: {token_response.status_code}")
+        print(f"🔵 Token response headers: {dict(token_response.headers)}")
+        
         if token_response.status_code != 200:
+            print(f"❌ Token error: {token_response.text}")
             return f"Ошибка получения токена: {token_response.text}", 400
         
         tokens = token_response.json()
         access_token = tokens.get('access_token')
         
         if not access_token:
+            print("❌ No access token received")
             return "Access token не получен", 400
         
+        print("🔵 Getting user info from Google...")
         userinfo_url = "https://www.googleapis.com/oauth2/v3/userinfo"
         userinfo_response = requests.get(
             userinfo_url,
             headers={"Authorization": f"Bearer {access_token}"}
         )
         
+        print(f"🔵 Userinfo response status: {userinfo_response.status_code}")
+        
         if userinfo_response.status_code != 200:
+            print(f"❌ Userinfo error: {userinfo_response.text}")
             return "Ошибка получения данных пользователя", 400
         
         user_info = userinfo_response.json()
+        print(f"🔵 User info received: {user_info}")
         
         db_user = save_user_to_supabase(user_info, request)
         
         if not db_user:
+            print("❌ Failed to save user to database")
             return "Ошибка сохранения пользователя", 500
         
+        # Сохраняем пользователя в сессии
         session['user'] = {
             'id': db_user['id'],
             'google_id': db_user['google_id'],
@@ -752,12 +782,17 @@ def google_callback():
         }
         
         session['license_accepted'] = True
-        
         session.pop('oauth_state', None)
+        
         next_url = session.get('next_url', '/dashboard')
+        print(f"✅ Auth successful, redirecting to: {next_url}")
+        
         return redirect(next_url)
         
     except Exception as e:
+        print(f"❌ Exception in google_callback: {str(e)}")
+        import traceback
+        print(f"❌ Traceback: {traceback.format_exc()}")
         return f"Внутренняя ошибка сервера: {str(e)}", 500
 
 @app.route('/license')
@@ -1173,6 +1208,7 @@ if __name__ == '__main__':
     
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
