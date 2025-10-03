@@ -20,8 +20,8 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 app.secret_key = "4f7d9a2b8c1e6f3a9d2b5c8e1f7a3d6b9c2e5f8a1d4b7c0e3f6a9d2b5c8e1f7a"
 
 # Google OAuth Configuration
-GOOGLE_CLIENT_ID = "268307319121-96e0bh135ic94v10mv0q1c4m6nofhu75.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "GOCSPX-9p8q7z0wNnF"
+GOOGLE_CLIENT_ID = "268307319121-04ckk21lv76bs27dgc6mokpdbh78apcp.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "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" 
 # ==============================================================
 
 # Инициализируем Supabase только если переменные установлены
@@ -1173,6 +1173,7 @@ if __name__ == '__main__':
     
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
