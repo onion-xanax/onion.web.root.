@@ -1030,6 +1030,29 @@ def dashboard():
     
     return dashboard_html
 
+@app.route('/ddos')
+def ddos_page():
+    if 'user' not in session:
+        return redirect('/')
+    
+    if not session.get('license_accepted'):
+        return redirect('/license')
+    
+    try:
+        return send_from_directory('ddos', 'onion.html')
+    except:
+        return "Страница DDOS не найдена", 404
+
+@app.route('/ddos/<path:filename>')
+def serve_ddos_files(filename):
+    if 'user' not in session:
+        return redirect('/')
+    
+    try:
+        return send_from_directory('ddos', filename)
+    except:
+        return f"Файл {filename} не найден", 404
+
 @app.route('/search')
 def search_page():
     if 'user' not in session:
@@ -1208,6 +1231,7 @@ if __name__ == '__main__':
     
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
