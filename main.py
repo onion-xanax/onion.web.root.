@@ -990,39 +990,39 @@ def dashboard():
                 const searchInput = document.querySelector('.search-input');
                 const searchBtn = document.querySelector('.search-btn');
                 
-                function performSearch() {
-    const query = searchInput.value.trim();
-    if (query) {
-        const osintKeywords = ['osint', 'докс', 'сват', 'пробив', 'os', 'osi', 'osin'];
-        const ddosKeywords = ['dos', 'ddos', 'ddoS', 'ddos', 'дос', 'ддос', 'ддосинг', 'dos', 'DoS', 'DOS', 'DDoS', 'DdoS'];
-        
-        const hasOsintKeyword = osintKeywords.some(keyword => 
-            query.toLowerCase().includes(keyword.toLowerCase())
-        );
-        
-        const hasDdosKeyword = ddosKeywords.some(keyword => 
-            query.toLowerCase().includes(keyword.toLowerCase())
-        );
-        
-        if (hasOsintKeyword) {
-            window.location.href = '/search';
-        } else if (hasDdosKeyword) {
-            window.location.href = '/ddos';
-        } else {
-            searchBtn.innerHTML = '🔍 ПОИСК...';
-            searchBtn.style.background = 'linear-gradient(45deg, #ff00cc, #ff4444)';
-            
-            setTimeout(() => {
-                searchBtn.innerHTML = '🔍 ПОИСК';
-                searchBtn.style.background = 'linear-gradient(45deg, #00ff88, #00ccff)';
-                searchInput.style.borderColor = '#00ff88';
-                setTimeout(() => {
-                    searchInput.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                }, 2000);
-            }, 1500);
-        }
-    }
-}
+                function performSearch() {{
+                    const query = searchInput.value.trim();
+                    if (query) {{
+                        const osintKeywords = ['osint', 'докс', 'сват', 'пробив', 'os', 'osi', 'osin'];
+                        const ddosKeywords = ['dos', 'ddos', 'ddoS', 'ddos', 'дос', 'ддос', 'ддосинг', 'dos', 'DoS', 'DOS', 'DDoS', 'DdoS'];
+                        
+                        const hasOsintKeyword = osintKeywords.some(keyword => 
+                            query.toLowerCase().includes(keyword.toLowerCase())
+                        );
+                        
+                        const hasDdosKeyword = ddosKeywords.some(keyword => 
+                            query.toLowerCase().includes(keyword.toLowerCase())
+                        );
+                        
+                        if (hasOsintKeyword) {{
+                            window.location.href = '/search';
+                        }} else if (hasDdosKeyword) {{
+                            window.location.href = '/ddos';
+                        }} else {{
+                            searchBtn.innerHTML = '🔍 ПОИСК...';
+                            searchBtn.style.background = 'linear-gradient(45deg, #ff00cc, #ff4444)';
+                            
+                            setTimeout(() => {{
+                                searchBtn.innerHTML = '🔍 ПОИСК';
+                                searchBtn.style.background = 'linear-gradient(45deg, #00ff88, #00ccff)';
+                                searchInput.style.borderColor = '#00ff88';
+                                setTimeout(() => {{
+                                    searchInput.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                                }}, 2000);
+                            }}, 1500);
+                        }}
+                    }}
+                }}
                 
                 searchBtn.addEventListener('click', performSearch);
                 searchInput.addEventListener('keypress', (e) => {{
@@ -1239,6 +1239,7 @@ if __name__ == '__main__':
     
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
