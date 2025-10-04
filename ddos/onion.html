@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS Stress Testing</title>
+    <link rel="stylesheet" href="/ddos/onion.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="ddos-container">
+        <!-- Header -->
+        <header class="ddos-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="pulse-icon">⚡</div>
+                    <h1 class="title-glitch">STRESS TEST</h1>
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>READY</span>
+                    </div>
+                </div>
+                <div class="user-section">
+                    <div class="user-info">
+                        <span id="userEmail">user@example.com</span>
+                        <a href="/logout" class="logout-btn">LOGOUT</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="ddos-main">
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <div class="panel-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <h3>Target Configuration</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="input-group">
+                            <label for="targetUrl">Target URL</label>
+                            <input type="text" id="targetUrl" placeholder="https://example.com" class="neon-input">
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="attackType">Attack Type</label>
+                                <select id="attackType" class="neon-select">
+                                    <option value="http">HTTP Flood</option>
+                                    <option value="slowloris">Slowloris</option>
+                                    <option value="udp">UDP Flood</option>
+                                    <option value="icmp">ICMP Flood</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="threads">Threads</label>
+                                <input type="number" id="threads" value="10" min="1" max="100" class="neon-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="card-header">
+                        <div class="card-icon">⚙️</div>
+                        <h3>Attack Parameters</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="duration">Duration (seconds)</label>
+                                <input type="number" id="duration" value="30" min="5" max="300" class="neon-input">
+                            </div>
+                            <div class="input-group">
+                                <label for="rate">Request Rate</label>
+                                <input type="number" id="rate" value="100" min="10" max="1000" class="neon-input">
+                            </div>
+                        </div>
+                        <div class="slider-group">
+                            <label for="intensity">Attack Intensity</label>
+                            <input type="range" id="intensity" min="1" max="10" value="5" class="neon-slider">
+                            <div class="slider-labels">
+                                <span>Low</span>
+                                <span>Medium</span>
+                                <span>High</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Section -->
+            <section class="action-section">
+                <div class="action-card">
+                    <div class="card-header">
+                        <div class="card-icon">🚀</div>
+                        <h3>Launch Control</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="button-group">
+                            <button id="startAttack" class="btn-primary pulse-glow">
+                                <span class="btn-icon">🎯</span>
+                                START ATTACK
+                            </button>
+                            <button id="stopAttack" class="btn-secondary" disabled>
+                                <span class="btn-icon">⏹️</span>
+                                STOP ATTACK
+                            </button>
+                            <button id="testConnection" class="btn-tertiary">
+                                <span class="btn-icon">🔍</span>
+                                TEST TARGET
+                            </button>
+                        </div>
+                        <div class="warning-message">
+                            <div class="warning-icon">⚠️</div>
+                            <p>Use responsibly. Only test your own servers or authorized targets.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-value" id="requestsSent">0</div>
+                        <div class="stat-label">Requests Sent</div>
+                        <div class="stat-trend up">+0/sec</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="successRate">0%</div>
+                        <div class="stat-label">Success Rate</div>
+                        <div class="stat-trend stable">±0%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-value" id="responseTime">0ms</div>
+                        <div class="stat-label">Avg Response</div>
+                        <div class="stat-trend down">-0ms</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="attackTime">0s</div>
+                        <div class="stat-label">Attack Duration</div>
+                        <div class="stat-trend neutral">Live</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visualization -->
+            <section class="visualization-section">
+                <div class="viz-card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <h3>Real-time Analytics</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="chart-container">
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <span class="metric-label">Bandwidth</span>
+                                <span class="metric-value" id="bandwidth">0 MB/s</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Active Threads</span>
+                                <span class="metric-value" id="activeThreads">0</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Errors</span>
+                                <span class="metric-value error" id="errorCount">0</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Target Status</span>
+                                <span class="metric-value success" id="targetStatus">Unknown</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/ddos/onion.js"></script>
+</body>
+</html>
