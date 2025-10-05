@@ -21,7 +21,6 @@ body {
     z-index: -1;
 }
 
-/* Левый верхний угол */
 .header-left {
     position: fixed;
     top: 20px;
@@ -42,12 +41,12 @@ body {
     animation: float 3s ease-in-out infinite;
 }
 
-    .logo-container:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(0, 255, 136, 0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
-    }
+.logo-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 255, 136, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+}
 
 .logo-image {
     width: 35px;
@@ -57,10 +56,10 @@ body {
     transition: all 0.3s ease;
 }
 
-    .logo-image:hover {
-        border-color: #00ccff;
-        transform: scale(1.1) rotate(5deg);
-    }
+.logo-image:hover {
+    border-color: #00ccff;
+    transform: scale(1.1) rotate(5deg);
+}
 
 .logo-text {
     font-size: 18px;
@@ -72,7 +71,6 @@ body {
     letter-spacing: -0.5px;
 }
 
-/* Основной контейнер */
 .main-container {
     display: flex;
     justify-content: center;
@@ -89,7 +87,6 @@ body {
     width: 100%;
 }
 
-/* Панели */
 .panel {
     background: linear-gradient(145deg, rgba(40, 40, 40, 0.85), rgba(25, 25, 25, 0.95));
     backdrop-filter: blur(15px);
@@ -102,29 +99,28 @@ body {
     overflow: hidden;
 }
 
-    .panel::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.6), transparent);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
+.panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.6), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-    .panel:hover {
-        transform: translateY(-8px) scale(1.02);
-        border-color: rgba(138, 43, 226, 0.3);
-        box-shadow: 0 20px 60px rgba(138, 43, 226, 0.25), 0 0 0 1px rgba(138, 43, 226, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
+.panel:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(138, 43, 226, 0.3);
+    box-shadow: 0 20px 60px rgba(138, 43, 226, 0.25), 0 0 0 1px rgba(138, 43, 226, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
 
-        .panel:hover::before {
-            opacity: 1;
-        }
+.panel:hover::before {
+    opacity: 1;
+}
 
-/* Заголовок панели */
 .panel-header {
     margin-bottom: 20px;
     text-align: center;
@@ -141,14 +137,12 @@ body {
     text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
 }
 
-/* Контент панели */
 .panel-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Секция с примером */
 .example-section {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -170,7 +164,6 @@ body {
     font-family: 'Courier New', monospace;
 }
 
-/* Секция ввода */
 .input-section {
     display: flex;
     flex-direction: column;
@@ -189,18 +182,17 @@ body {
     transition: all 0.3s ease;
 }
 
-    .ddos-input::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-    }
+.ddos-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
 
-    .ddos-input:focus {
-        border-color: #8a2be2;
-        background: rgba(0, 0, 0, 0.7);
-        box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
-        transform: translateY(-1px);
-    }
+.ddos-input:focus {
+    border-color: #8a2be2;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+    transform: translateY(-1px);
+}
 
-/* Кнопка атаки */
 .attack-btn {
     position: relative;
     padding: 14px 20px;
@@ -254,7 +246,6 @@ body {
     height: 100px;
 }
 
-/* Секция логов */
 .logs-section {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -295,10 +286,10 @@ body {
     font-size: 12px;
 }
 
-    .log-btn:hover {
-        color: #00ff88;
-        background: rgba(0, 255, 136, 0.1);
-    }
+.log-btn:hover {
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+}
 
 .terminal {
     height: 150px;
@@ -316,9 +307,9 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-    .terminal-line:last-child {
-        margin-bottom: 0;
-    }
+.terminal-line:last-child {
+    margin-bottom: 0;
+}
 
 .terminal::-webkit-scrollbar {
     width: 6px;
@@ -334,67 +325,30 @@ body {
     border-radius: 3px;
 }
 
-    .terminal::-webkit-scrollbar-thumb:hover {
-        background: rgba(138, 43, 226, 0.7);
-    }
+.terminal::-webkit-scrollbar-thumb:hover {
+    background: rgba(138, 43, 226, 0.7);
+}
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 1200px) {
-    .panels-grid {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-    }
+    .panels-grid { grid-template-columns: 1fr; max-width: 600px; }
 }
 
 @media (max-width: 768px) {
-    .header-left {
-        top: 10px;
-        left: 10px;
-    }
-
-    .logo-container {
-        padding: 8px 15px;
-    }
-
-    .logo-text {
-        font-size: 16px;
-    }
-
-    .logo-image {
-        width: 30px;
-        height: 30px;
-    }
-
-    .main-container {
-        padding: 70px 15px 15px;
-    }
-
-    .panel {
-        padding: 20px;
-    }
-
-    .panels-grid {
-        gap: 20px;
-    }
+    .header-left { top: 10px; left: 10px; }
+    .logo-container { padding: 8px 15px; }
+    .logo-text { font-size: 16px; }
+    .logo-image { width: 30px; height: 30px; }
+    .main-container { padding: 70px 15px 15px; }
+    .panel { padding: 20px; }
+    .panels-grid { gap: 20px; }
 }
