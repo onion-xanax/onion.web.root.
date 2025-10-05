@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         async loadUserAgents() {
-            try { const response = await fetch('user.json'); this.userAgents = await response.json(); } catch (error) { console.error('Failed to load user agents:', error); this.userAgents = [{ user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', proxy: null }]; }
+            try { const response = await fetch('/ddos/user.json'); this.userAgents = await response.json(); } catch (error) { console.error('Failed to load user agents:', error); this.userAgents = [{ user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', proxy: null }]; }
         }
 
         getRandomUserAgent() { return this.userAgents[Math.floor(Math.random() * this.userAgents.length)]; }
