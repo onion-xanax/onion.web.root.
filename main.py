@@ -1047,15 +1047,14 @@ def ddos_page():
         return redirect('/license')
     
     try:
-        return send_from_directory('ddos', 'onion.html')
+        # Читаем и возвращаем ddos/onion.html
+        with open('ddos/onion.html', 'r', encoding='utf-8') as f:
+            return f.read()
     except:
-        return "Страница DDOS не найдена", 404
+        return "DDoS страница не найдена", 404
 
 @app.route('/ddos/<path:filename>')
 def serve_ddos_files(filename):
-    if 'user' not in session:
-        return redirect('/')
-    
     try:
         return send_from_directory('ddos', filename)
     except:
@@ -1239,6 +1238,7 @@ if __name__ == '__main__':
     
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
