@@ -1038,6 +1038,8 @@ def dashboard():
     
     return dashboard_html
 
+# Добавьте эти маршруты в существующий main.py
+
 @app.route('/ddos')
 def ddos_page():
     if 'user' not in session:
@@ -1047,11 +1049,44 @@ def ddos_page():
         return redirect('/license')
     
     try:
-        # Читаем и возвращаем ddos/onion.html
-        with open('ddos/onion.html', 'r', encoding='utf-8') as f:
-            return f.read()
+        return send_from_directory('ddos', 'onion.html')
     except:
         return "DDoS страница не найдена", 404
+
+@app.route('/ddos/onion.css')
+def serve_ddos_css():
+    try:
+        return send_from_directory('ddos', 'onion.css')
+    except:
+        return "CSS не найден", 404
+
+@app.route('/ddos/onion.js')
+def serve_ddos_js():
+    try:
+        return send_from_directory('ddos', 'onion.js')
+    except:
+        return "JS не найден", 404
+
+@app.route('/ddos/user.json')
+def serve_ddos_user_json():
+    try:
+        return send_from_directory('ddos', 'user.json')
+    except:
+        return "User agents не найдены", 404
+
+@app.route('/ddos/onion.jpg')
+def serve_ddos_logo():
+    try:
+        return send_from_directory('ddos', 'onion.jpg')
+    except:
+        # Если файла нет, возвращаем простой SVG как запасной вариант
+        svg_logo = '''<svg width="35" height="35" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17.5" cy="17.5" r="17.5" fill="#00ff88"/>
+            <circle cx="17.5" cy="17.5" r="12" fill="#000"/>
+            <circle cx="17.5" cy="17.5" r="6" fill="#00ff88"/>
+        </svg>'''
+        from flask import Response
+        return Response(svg_logo, mimetype='image/svg+xml')
 
 @app.route('/ddos/<path:filename>')
 def serve_ddos_files(filename):
@@ -1238,6 +1273,7 @@ if __name__ == '__main__':
     
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
