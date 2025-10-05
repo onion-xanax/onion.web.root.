@@ -48,17 +48,16 @@ body {
     box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
 }
 
-.logo-image {
+.logo-emoji {
+    font-size: 20px;
     width: 35px;
     height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00ff88, #00ccff);
     border-radius: 50%;
     border: 2px solid #00ff88;
-    transition: all 0.3s ease;
-}
-
-.logo-image:hover {
-    border-color: #00ccff;
-    transform: scale(1.1) rotate(5deg);
 }
 
 .logo-text {
@@ -347,7 +346,7 @@ body {
     .header-left { top: 10px; left: 10px; }
     .logo-container { padding: 8px 15px; }
     .logo-text { font-size: 16px; }
-    .logo-image { width: 30px; height: 30px; }
+    .logo-emoji { width: 30px; height: 30px; font-size: 16px; }
     .main-container { padding: 70px 15px 15px; }
     .panel { padding: 20px; }
     .panels-grid { gap: 20px; }
